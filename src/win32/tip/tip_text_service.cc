@@ -618,7 +618,8 @@ class TipTextServiceImpl
     if (TipStatus::GetInputModeConversion(thread_mgr, client_id,
                                           &native_mode)) {
       GetThreadContext()->GetInputModeManager()->OnInitialize(
-          TipStatus::IsOpen(thread_mgr), native_mode);
+          true, native_mode);
+          // TipStatus::IsOpen(thread_mgr), native_mode);
     }
 
     // Emulate document changed event against the current document manager.
