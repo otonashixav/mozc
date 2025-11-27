@@ -147,13 +147,13 @@ class AsyncSetFocusEditSessionImpl final
     }
     ITfThreadMgr *thread_manager = text_service_->GetThreadManager();
     TipThreadContext *thread_context = text_service_->GetThreadContext();
-    DWORD system_input_mode = 0;
+    DWORD system_input_mode = 1;
     if (!TipStatus::GetInputModeConversion(
             thread_manager, text_service_->GetClientID(), &system_input_mode)) {
       return E_FAIL;
     }
     const auto action = thread_context->GetInputModeManager()->OnSetFocus(
-        TipStatus::IsOpen(thread_manager), system_input_mode, input_scopes);
+        true, system_input_mode, input_scopes);
     if (action == TipInputModeManager::kUpdateUI) {
       TipEditSessionImpl::UpdateUI(text_service_.get(), context_.get(),
                                    read_cookie);
