@@ -219,7 +219,11 @@ ImeContext::State GetEffectiveStateForTestSendKey(const commands::KeyEvent& key,
 }  // namespace
 
 Session::Session(const EngineInterface& engine)
-    : context_(CreateContext(engine)) {}
+    : context_(CreateContext(engine)) {
+#ifdef _WIN32
+  EnsureIMEIsOn();
+#endif
+    }
 
 std::unique_ptr<ImeContext> Session::CreateContext(
     const EngineInterface& engine) const {
@@ -229,8 +233,7 @@ std::unique_ptr<ImeContext> Session::CreateContext(
 #ifdef _WIN32
   // On Windows session is started with direct mode.
   // FIXME(toshiyuki): Ditto for Mac after verifying on Mac.
-  // context->set_state(ImeContext::DIRECT);
-  EnsureIMEIsOn();
+  context->set_state(ImeContext::DIRECT);
 #else   // _WIN32
   context->set_state(ImeContext::PRECOMPOSITION);
 #endif  // _WIN32
