@@ -229,7 +229,8 @@ std::unique_ptr<ImeContext> Session::CreateContext(
 #ifdef _WIN32
   // On Windows session is started with direct mode.
   // FIXME(toshiyuki): Ditto for Mac after verifying on Mac.
-  context->set_state(ImeContext::DIRECT);
+  // context->set_state(ImeContext::DIRECT);
+  EnsureIMEIsOn();
 #else   // _WIN32
   context->set_state(ImeContext::PRECOMPOSITION);
 #endif  // _WIN32
