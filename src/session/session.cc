@@ -219,11 +219,7 @@ ImeContext::State GetEffectiveStateForTestSendKey(const commands::KeyEvent& key,
 }  // namespace
 
 Session::Session(const EngineInterface& engine)
-    : context_(CreateContext(engine)) {
-#ifdef _WIN32
-  EnsureIMEIsOn();
-#endif
-    }
+    : context_(CreateContext(engine)) {}
 
 std::unique_ptr<ImeContext> Session::CreateContext(
     const EngineInterface& engine) const {
