@@ -621,11 +621,6 @@ class TipTextServiceImpl
           TipStatus::IsOpen(thread_mgr), native_mode);
     }
 
-    {
-      const commands::CompositionMode mozc_mode = GetMozcMode(TipLangBarCallback::kHiragana);
-      TipEditSession::SwitchInputModeAsync(this, mozc_mode);
-    }
-
     // Emulate document changed event against the current document manager.
     {
       wil::com_ptr_nothrow<ITfDocumentMgr> document_mgr;
@@ -647,6 +642,11 @@ class TipTextServiceImpl
       if (FAILED(result)) {
         return Deactivate();
       }
+    }
+
+    {
+      const commands::CompositionMode mozc_mode = GetMozcMode(TipLangBarCallback::kHiragana);
+      TipEditSession::SwitchInputModeAsync(this, mozc_mode);
     }
 
     return result;
