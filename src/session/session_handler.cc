@@ -532,17 +532,6 @@ bool SessionHandler::CreateSession(commands::Command* command) {
   // session is not empty.
   last_session_empty_time_ = absl::InfinitePast();
 
-  {
-    // Move to PRECOMPOSITION mode.
-    // On Windows, its initial mode is DIRECT.
-    commands::Command command;
-    commands::Input* input = command.mutable_input();
-    input->set_id(new_id);
-    input->set_type(commands::Input::SEND_KEY);
-    input->mutable_key()->set_special_key(commands::KeyEvent::ON);
-    EvalCommand(&command);
-  }
-
   return true;
 }
 
