@@ -532,7 +532,7 @@ bool SessionHandler::CreateSession(commands::Command* command) {
   // session is not empty.
   last_session_empty_time_ = absl::InfinitePast();
 
-  commands::Command ime_on_command;
+  commands::Command* ime_on_command;
   session->IMEOn(ime_on_command);
 
   return true;
