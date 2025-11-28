@@ -532,6 +532,9 @@ bool SessionHandler::CreateSession(commands::Command* command) {
   // session is not empty.
   last_session_empty_time_ = absl::InfinitePast();
 
+  session->EnsureIMEIsOn()
+  session->SwitchInputMode(transliteration::HIRAGANA, context_->mutable_composer());
+
   return true;
 }
 
