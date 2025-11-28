@@ -645,8 +645,7 @@ class TipTextServiceImpl
     }
 
     {
-      const commands::CompositionMode mozc_mode = GetMozcMode(TipLangBarCallback::kHiragana);
-      TipEditSession::SwitchInputModeAsync(this, mozc_mode);
+      TipEditSession::SwitchInputModeAsync(this, commands::HIRAGANA);
     }
 
     return result;
